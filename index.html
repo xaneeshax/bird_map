@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display a popup on hover</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+<script src="bird_spots.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+</style>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYW5lZXNoYTAxMSIsImEiOiJja2Jsa2gwc3cweHczMnlwZzBqZDJ1ejBtIn0.5jnE9Z8ySzxiBHBL2uiz2A';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [150.8023496,-35.0602404036],
+        zoom: 11.15
+    });
+
+    map.on('load', () => {
+        map.addSource('places', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.796505,-35.0684281806 ]
+    },
+    "properties": {
+    "FIELD1":0,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-15",
+    "time":"10:30:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.7983877,-35.0685525353 ]
+    },
+    "properties": {
+    "FIELD1":1,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-15",
+    "time":"11:33:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.7984929,-35.0670849911 ]
+    },
+    "properties": {
+    "FIELD1":2,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-15",
+    "time":"13:27:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.7986609,-35.0657267684 ]
+    },
+    "properties": {
+    "FIELD1":3,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-15",
+    "time":"14:30:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8001284,-35.0649781086 ]
+    },
+    "properties": {
+    "FIELD1":4,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-16",
+    "time":"06:59:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.7992751,-35.0681719853 ]
+    },
+    "properties": {
+    "FIELD1":5,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-16",
+    "time":"07:49:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.7986919,-35.0686572251 ]
+    },
+    "properties": {
+    "FIELD1":6,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-16",
+    "time":"08:50:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.798417,-35.0662361973 ]
+    },
+    "properties": {
+    "FIELD1":7,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-16",
+    "time":"11:05:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.797949,-35.0669218578 ]
+    },
+    "properties": {
+    "FIELD1":8,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-16",
+    "time":"12:14:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8011489,-35.0653572242 ]
+    },
+    "properties": {
+    "FIELD1":9,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-16",
+    "time":"13:55:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.7993171,-35.0661984494 ]
+    },
+    "properties": {
+    "FIELD1":10,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-16",
+    "time":"14:57:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8045207,-35.0643275067 ]
+    },
+    "properties": {
+    "FIELD1":11,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-17",
+    "time":"15:48:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.7952742,-35.0669002888 ]
+    },
+    "properties": {
+    "FIELD1":12,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-18",
+    "time":"11:12:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.7988887,-35.0633689571 ]
+    },
+    "properties": {
+    "FIELD1":13,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-19",
+    "time":"07:10:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.800112,-35.0647704652 ]
+    },
+    "properties": {
+    "FIELD1":14,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-19",
+    "time":"08:23:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8019588,-35.0674543926 ]
+    },
+    "properties": {
+    "FIELD1":15,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-19",
+    "time":"10:35:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8034472,-35.066742133 ]
+    },
+    "properties": {
+    "FIELD1":16,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-19",
+    "time":"11:51:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8001217,-35.0656360869 ]
+    },
+    "properties": {
+    "FIELD1":17,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-19",
+    "time":"14:25:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.7941607,-35.0548990201 ]
+    },
+    "properties": {
+    "FIELD1":18,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-21",
+    "time":"07:50:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8001758,-35.0632120152 ]
+    },
+    "properties": {
+    "FIELD1":19,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-21",
+    "time":"15:43:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8021572,-35.0621030356 ]
+    },
+    "properties": {
+    "FIELD1":20,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-22",
+    "time":"07:07:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8027115,-35.0622843692 ]
+    },
+    "properties": {
+    "FIELD1":21,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-22",
+    "time":"09:10:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8029706,-35.0624333068 ]
+    },
+    "properties": {
+    "FIELD1":22,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-22",
+    "time":"10:25:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8031876,-35.0612923235 ]
+    },
+    "properties": {
+    "FIELD1":23,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-22",
+    "time":"16:56:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8021761,-35.0630319318 ]
+    },
+    "properties": {
+    "FIELD1":24,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-23",
+    "time":"06:48:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8023496,-35.0602404036 ]
+    },
+    "properties": {
+    "FIELD1":25,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-23",
+    "time":"08:45:00.000"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 150.8028874,-35.0626752055 ]
+    },
+    "properties": {
+    "FIELD1":26,
+    "ANIMALID":"Isabella",
+    "DATE":"2003-04-23",
+    "time":"08:45:00.000"
+    }
+  }
+]
+            }
+        });
+        // Add a layer showing the places.
+        map.addLayer({
+            'id': 'places',
+            'type': 'circle',
+            'source': 'places',
+            'paint': {
+                'circle-color': '#4264fb',
+                'circle-radius': 6,
+                'circle-stroke-width': 2,
+                'circle-stroke-color': '#ffffff'
+            }
+        });
+
+        // Create a popup, but don't add it to the map yet.
+        const popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false
+        });
+
+        map.on('mouseenter', 'places', (e) => {
+            // Change the cursor style as a UI indicator.
+            map.getCanvas().style.cursor = 'pointer';
+
+            // Copy coordinates array.
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const name = e.features[0].properties["ANIMALID"];
+            const date = e.features[0].properties["DATE"];
+            const time = e.features[0].properties["time"];
+            
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            // Populate the popup and set its coordinates
+            // based on the feature found.
+            popup.setLngLat(coordinates).setHTML( "<b>" + name + "</b>" + "<br>" + "<br>" + date + "<br>" +  time).addTo(map);
+        });
+
+        map.on('mouseleave', 'places', () => {
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+        });
+    });
+</script>
+
+</body>
+</html>
